@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './model/product.model';
 import { Model } from 'mongoose';
@@ -6,6 +6,7 @@ import { User } from 'src/user/model/user.model';
 
 @Injectable()
 export class ProductService {
+ 
   constructor(@InjectModel(Product.name) private readonly productModel: Model<Product>) {}
 
 
@@ -22,9 +23,23 @@ async  createProduct(user: User, input: Product): Promise<Product> {
 
      input.userId = user._id;
     const newProduct = new this.productModel(input);
-    console.log(newProduct);
-    return await newProduct.save();
+    
+    return  await newProduct.save()
+    
       
     }
+
+  async findOneBySerialNo(serialNo: string): Promise<Product | null> {
+    const product = await this.productModel.findOne({ serialNo }).exec();
+    if (product) {
+      return product;
+    } else {
+      throw new NotFoundException(`Product with serial No ${serialNo} not found`);
+    }
+  }
+
+  async findallproduct(){
+    return this.productModel.find().exec()
+  }
 }
 

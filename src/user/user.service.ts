@@ -16,11 +16,13 @@ export class UserService {
         const hashedPassword = await hashed(input.password);
         input.password = hashedPassword
         const newUser = new this.userModel(input);
-        
+         delete newUser.password;
         return newUser.save();
     }
 
     async findall(){
-        return await this.userModel.find().lean()
+        const user =  await this.userModel.find().lean()
+        
+        return user
     }
 }

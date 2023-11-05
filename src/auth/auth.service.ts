@@ -27,7 +27,7 @@ export class AuthService {
     }
 
         const payload ={
-            id: user._id
+             user
         }
             return {
                 accesstoken: this.jwtService.sign(payload)
@@ -35,7 +35,8 @@ export class AuthService {
     }
 
     async getUserjwt(id: string){
-        const user = await this.userModel.findOne({id: id}).exec();
+        const user = await this.userModel.findOne({_id: id}).exec();
+       
         return user;
        }
 }

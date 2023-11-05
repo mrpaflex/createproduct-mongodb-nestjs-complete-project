@@ -3,6 +3,7 @@ import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { AuthService } from "../auth.service";
 import { ConfigService } from "@nestjs/config";
+import { User } from "src/user/model/user.model";
 //require('dotenv').config();
 
 export interface JwtPayload{

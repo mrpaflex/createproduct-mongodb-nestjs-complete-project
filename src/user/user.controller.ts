@@ -15,4 +15,5 @@ export class UserController {
     findAlluser(){
         return this.userService.findall()
     }
+
 }
