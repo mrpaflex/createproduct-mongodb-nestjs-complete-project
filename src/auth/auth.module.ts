@@ -19,7 +19,7 @@ require('dotenv').config();
       imports: [ConfigModule],
       useFactory:async (configService:ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'),
-        signOptions: {expiresIn: '2hr'}
+        signOptions: {expiresIn: '7m'}
       }),
       inject: [ConfigService],
     }), 

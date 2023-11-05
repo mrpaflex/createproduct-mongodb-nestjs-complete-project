@@ -37,6 +37,7 @@ export class ProductController {
     }
 
     @Delete(':serialNo')
+    @UseGuards(JwtAuthGuard)
     remove(@Param('serialNo') serialNo: string){
         return this.productService.deleteProduct(serialNo)
     }
