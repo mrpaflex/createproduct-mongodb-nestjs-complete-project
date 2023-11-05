@@ -8,6 +8,3 @@ export const GetRestApiCurrentUser = createParamDecorator(
       return request.user;
     },
   );
-
-
-
