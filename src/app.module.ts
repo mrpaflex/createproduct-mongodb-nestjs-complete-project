@@ -7,7 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 require('dotenv').config();
 
 @Module({
-
+  
   imports: [
     ConfigModule.forRoot({
       isGlobal: true

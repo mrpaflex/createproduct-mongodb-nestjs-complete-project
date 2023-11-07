@@ -2,6 +2,9 @@
 /dist
 /node_modules
 .env
+deployment.yml
+text.txt
+
 
 # Logs
 logs

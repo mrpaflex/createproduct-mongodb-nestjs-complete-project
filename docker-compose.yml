@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  mongo_db:
+    container_name: db_container
+    image: mongo:latest
+    restart: always
+    ports:
+      - 2717:27017
+    volumes:
+      - mongo_db:/data/db
+
+  api:
+    build: .
+    ports:
+      - 4000:4000
+    volumes:
+      - ./usr/src/app:/usr/src/app
+    environment:
+      PORT: 4000
+      MONGODB_URI: mongodb://mongo_db:27017
+      DB_NAME: mstoreDb
+    depends_on:
+      - mongo_db
+
+volumes:
+  mongo_db:
